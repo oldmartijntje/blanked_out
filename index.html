@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://api.oldmartijntje.nl/api/oldmartijntje.nl/assets/icons/oldma.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blanked_out</title>
+    <meta property="og:title" content="Blanked_out">
+    <meta property="og:description" content="Yes">
+    <meta property="og:image" content="https://api.oldmartijntje.nl/api/oldmartijntje.nl/assets/images/mii.png">
+    <!-- <meta property="og:url" content=""> -->
+    <meta property="og:type" content="website">
+  <script type="module" crossorigin src="/blanked_out/assets/index-Ce4S0Jk4.js"></script>
+  <link rel="stylesheet" crossorigin href="/blanked_out/assets/index-TGjZWMiz.css">
+</head>
+
+
+<body>
+    <div style="height: 100%; display: flex; flex-direction: column">
+        <canvas id="game-canvas" style="height: 100%;" width="320" height="180"></canvas>
+        <div>
+            <button class="gameController ArrowUp">^</button>
+            <button class="gameController KeyA">&lt;</button>
+            <button class="gameController ArrowDown" style="transform: rotate(180deg);">^</button>
+            <button class="gameController ArrowRight">></button>
+            <img class="gameController Space" alt="Spacebar" src="https://i.imgur.com/enN6fzh.png"
+                style="height:51px"></img>
+        </div>
+    </div>
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById('game-canvas');
+            const aspectRatio = canvas.width / canvas.height;
+            let width = window.innerWidth;
+            let height = window.innerHeight - 100;
+
+            if (width / height > aspectRatio) {
+                width = height * aspectRatio;
+            } else {
+                height = width / aspectRatio;
+            }
+
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            canvas.style.display = 'block';
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1VS9ECC4Q4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1VS9ECC4Q4');
+    </script>
+
+</body>
+
+</html>
