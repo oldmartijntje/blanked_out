@@ -1,0 +1,183 @@
+{
+    "version": "1.2.1",
+    "project-name": "blanked_out-development-build",
+    "root": "",
+    "routes": {
+        "Entity": {
+            "path": "src/objects/Entity/Entity.js",
+            "require": [
+                "Entity"
+            ]
+        },
+        "Exit": {
+            "path": "src/objects/Exit/Exit.js",
+            "require": [
+                "Exit"
+            ]
+        },
+        "Hero": {
+            "path": "src/objects/Hero/Hero.js",
+            "require": [
+                "Hero"
+            ]
+        },
+        "HeroAnimations": {
+            "path": "src/objects/Hero/heroAnimations.js",
+            "require": [
+                "STAND_DOWN",
+                "STAND_UP",
+                "STAND_LEFT",
+                "STAND_RIGHT",
+                "WALK_DOWN",
+                "WALK_UP",
+                "WALK_LEFT",
+                "WALK_RIGHT",
+                "PICK_UP_DOWN"
+            ]
+        },
+        "Inventory": {
+            "path": "src/objects/Inventory/Inventory.js",
+            "require": [
+                "Inventory"
+            ]
+        },
+        "Level": {
+            "path": "src/objects/Level/Level.js",
+            "require": [
+                "Level"
+            ]
+        },
+        "Main": {
+            "path": "src/objects/Main/Main.js",
+            "require": [
+                "Main"
+            ]
+        },
+        "Npc": {
+            "path": "src/objects/Npc/Npc.js",
+            "require": [
+                "Npc"
+            ]
+        },
+        "Rod": {
+            "path": "src/objects/Rod/Rod.js",
+            "require": [
+                "Rod"
+            ]
+        },
+        "SpriteFontMap": {
+            "path": "src/objects/SpriteTextString/SpriteFontMap.js",
+            "require": [
+                "getCharacterWidth",
+                "getCharacterFrame"
+            ]
+        },
+        "SpriteTextString": {
+            "path": "src/objects/SpriteTextString/SpriteTextString.js",
+            "require": [
+                "SpriteTextString"
+            ]
+        },
+        "TextBox": {
+            "path": "src/objects/TextBox/TextBox.js",
+            "require": [
+                "TextBox"
+            ]
+        },
+        "config": {
+            "path": "src/config.js",
+            "require": [
+                "config"
+            ]
+        },
+        "Vector2": {
+            "path": "src/system/Vector2.js",
+            "require": [
+                "Vector2"
+            ]
+        },
+        "storyFlags": {
+            "path": "src/system/storyFlags.js",
+            "require": [
+                "storyFlags"
+            ]
+        },
+        "Sprite": {
+            "path": "src/system/Sprite.js",
+            "require": [
+                "Sprite"
+            ]
+        },
+        "Resource": {
+            "path": "src/system/Resource.js",
+            "require": [
+                "resources"
+            ]
+        },
+        "Input": {
+            "path": "src/system/Input.js",
+            "require": [
+                "Input",
+                "DIRECTIONS_KEYS",
+                "APP_KEYS",
+                "LEFT",
+                "RIGHT",
+                "UP",
+                "DOWN",
+                "SPACE"
+            ]
+        },
+        "GameObject": {
+            "path": "src/system/GameObject.js",
+            "require": [
+                "GameObject"
+            ]
+        },
+        "GameLoop": {
+            "path": "src/system/GameLoop.js",
+            "require": [
+                "GameLoop"
+            ]
+        },
+        "FrameIndexPattern": {
+            "path": "src/system/FrameIndexPattern.js",
+            "require": [
+                "FrameIndexPattern"
+            ]
+        },
+        "Events": {
+            "path": "src/system/Events.js",
+            "require": [
+                "events"
+            ]
+        },
+        "Camera": {
+            "path": "src/system/Camera.js",
+            "require": [
+                "Camera"
+            ]
+        },
+        "Animations": {
+            "path": "src/system/Animations.js",
+            "require": [
+                "Animations"
+            ]
+        },
+        "Grid": {
+            "path": "src/helpers/gridCells.js",
+            "require": [
+                "GridCells",
+                "isSpaceFree",
+                "calculateNearestGridPosition",
+                "calculateNearestGridPositionFloored"
+            ]
+        },
+        "MoveTowards": {
+            "path": "src/helpers/moveTowards.js",
+            "require": [
+                "moveTowards",
+                "calculateMoveOnto"
+            ]
+        }
+    }
+}
