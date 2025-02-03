@@ -1,7 +1,7 @@
 import { Vector2 } from "./src/system/Vector2.js";
 import { GameLoop } from "./src/system/GameLoop.js";
 import { Main } from './src/objects/Main/Main.js';
-import { OutdoorLevel1 } from "./src/levels/OutdoorLevel1.js";
+import { BaseLevel } from "./src/levels/BaseLevel.js";
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -10,7 +10,7 @@ const ctx = canvas.getContext('2d');
 const mainScene = new Main({
     position: new Vector2(0, 0),
 });
-mainScene.setLevel(new OutdoorLevel1());
+mainScene.setLevel(new BaseLevel());
 
 const update = (deltaTime) => {
     mainScene.stepEntry(deltaTime, mainScene);

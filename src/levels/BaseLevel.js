@@ -3,18 +3,16 @@ import { Sprite } from "../system/Sprite.js";
 import { Vector2 } from "../system/Vector2.js";
 import { Level } from "../objects/Level/Level.js";
 import { gridCells } from "../helpers/grid.js";
-import { Exit } from "../objects/Exit/Exit.js";
 import { Hero } from "../objects/Hero/Hero.js";
 import { Rod } from "../objects/Rod/Rod.js";
 import { config } from "../config.js";
-import { CaveLevel1 } from "./CaveLevel1.js";
 import { events } from "../system/Events.js";
 import { Npc } from "../objects/Npc/Npc.js";
 import { TALKED_TO_A, TALKED_TO_B } from "../system/StoryFlags.js";
 
 const DEFAULT_HERO_POSITION = new Vector2(gridCells(10), gridCells(4));
 
-export class OutdoorLevel1 extends Level {
+export class BaseLevel extends Level {
     constructor(params = {}) {
         super({});
         this.background = new Sprite({
@@ -28,9 +26,6 @@ export class OutdoorLevel1 extends Level {
         });
 
         this.addChild(groundSprite);
-
-        const exit = new Exit(gridCells(10), gridCells(6));
-        this.addChild(exit);
 
         const rod = new Rod(gridCells(11), gridCells(3));
         this.addChild(rod);
