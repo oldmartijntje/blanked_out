@@ -58,10 +58,10 @@ const onPointerDown = (event) => {
 };
 
 const onPointerMove = (event) => {
-    if (isDragging) {
+    if (isDragging && (event.touches || (event.clientY && event.clientX))) {
         const currentX = event.clientX || event.touches[0].clientX;
         const currentY = event.clientY || event.touches[0].clientY;
-        const speedFactor = event.touches ? 1 : 0.5; // Slow down movement on PC
+        const speedFactor = event.touches ? 1 : 0.375; // Slow down movement on PC
         mainScene.camera.position.x += (currentX - lastX) * speedFactor / scale;
         mainScene.camera.position.y += (currentY - lastY) * speedFactor / scale;
         lastX = currentX;
@@ -84,7 +84,7 @@ const onTouchStart = (event) => {
     if (event.touches.length === 2) {
         const dx = event.touches[0].clientX - event.touches[1].clientX;
         const dy = event.touches[0].clientY - event.touches[1].clientY;
-        lastTouchDist = Math.sqrt(dx * dx + dy * dy);
+        lastTouchDist = Math.hypot(dx, dy);
         zoomDirection = null; // Reset zoom direction
     }
 };
@@ -94,7 +94,7 @@ const onTouchMove = (event) => {
         event.preventDefault();
         const dx = event.touches[0].clientX - event.touches[1].clientX;
         const dy = event.touches[0].clientY - event.touches[1].clientY;
-        const newDist = Math.sqrt(dx * dx + dy * dy);
+        const newDist = Math.hypot(dx, dy);
 
         if (lastTouchDist) {
             const change = newDist - lastTouchDist;
