@@ -13,9 +13,11 @@ const mainScene = new Main({
 mainScene.setLevel(new BaseLevel());
 
 let scale = 1;
-const zoomSpeed = 0.1;
+const zoomSpeed = 0.05;
 let isDragging = false;
 let lastX = 0, lastY = 0;
+let lastTouchDist = null;
+let zoomDirection = null;
 
 const update = (deltaTime) => {
     mainScene.stepEntry(deltaTime, mainScene);
@@ -48,7 +50,7 @@ const draw = () => {
 const gameLoop = new GameLoop(update, draw);
 gameLoop.start();
 
-// Handle drag movement
+// Handle drag movement with adjusted speed for PC
 const onPointerDown = (event) => {
     isDragging = true;
     lastX = event.clientX || event.touches[0].clientX;
@@ -59,8 +61,9 @@ const onPointerMove = (event) => {
     if (isDragging) {
         const currentX = event.clientX || event.touches[0].clientX;
         const currentY = event.clientY || event.touches[0].clientY;
-        mainScene.camera.position.x += (currentX - lastX) / scale;
-        mainScene.camera.position.y += (currentY - lastY) / scale;
+        const speedFactor = event.touches ? 1 : 0.5; // Slow down movement on PC
+        mainScene.camera.position.x += (currentX - lastX) * speedFactor / scale;
+        mainScene.camera.position.y += (currentY - lastY) * speedFactor / scale;
         lastX = currentX;
         lastY = currentY;
     }
@@ -77,12 +80,12 @@ const onWheel = (event) => {
     scale = Math.max(0.5, Math.min(3, scale)); // Clamping zoom level
 };
 
-let lastTouchDist = null;
 const onTouchStart = (event) => {
     if (event.touches.length === 2) {
         const dx = event.touches[0].clientX - event.touches[1].clientX;
         const dy = event.touches[0].clientY - event.touches[1].clientY;
         lastTouchDist = Math.sqrt(dx * dx + dy * dy);
+        zoomDirection = null; // Reset zoom direction
     }
 };
 
@@ -92,13 +95,25 @@ const onTouchMove = (event) => {
         const dx = event.touches[0].clientX - event.touches[1].clientX;
         const dy = event.touches[0].clientY - event.touches[1].clientY;
         const newDist = Math.sqrt(dx * dx + dy * dy);
+
         if (lastTouchDist) {
-            const zoomFactor = newDist > lastTouchDist ? (1 + zoomSpeed) : (1 - zoomSpeed);
-            scale *= zoomFactor;
-            scale = Math.max(0.5, Math.min(3, scale)); // Clamping zoom level
+            const change = newDist - lastTouchDist;
+            const newZoomDirection = change > 0 ? 1 : -1;
+
+            if (zoomDirection === null || newZoomDirection === zoomDirection) {
+                const zoomFactor = change > 0 ? (1 + zoomSpeed) : (1 - zoomSpeed);
+                scale *= zoomFactor;
+                scale = Math.max(0.5, Math.min(3, scale)); // Clamping zoom level
+                zoomDirection = newZoomDirection;
+            }
         }
         lastTouchDist = newDist;
     }
+};
+
+const onTouchEnd = () => {
+    lastTouchDist = null;
+    zoomDirection = null; // Reset zoom direction when fingers are lifted
 };
 
 canvas.addEventListener("mousedown", onPointerDown);
@@ -111,3 +126,4 @@ canvas.addEventListener("touchend", onPointerUp);
 canvas.addEventListener("wheel", onWheel, { passive: false });
 canvas.addEventListener("touchstart", onTouchStart, { passive: false });
 canvas.addEventListener("touchmove", onTouchMove, { passive: false });
+canvas.addEventListener("touchend", onTouchEnd);
