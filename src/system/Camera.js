@@ -3,7 +3,7 @@ import { GameObject } from "./GameObject.js";
 import { Vector2 } from "./Vector2.js";
 
 export class Camera extends GameObject {
-    public zoom: number;
+    zoom = 1;
     constructor() {
         super({});
         this.zoom = 1;

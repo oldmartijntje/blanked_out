@@ -28,7 +28,7 @@ export class Main extends GameObject {
             this.setLevel(newLevelInstance);
         });
 
-        events.on(DO_ACTION_ON_COORDINATE, this, (withObject) => {
+        events.on(EventTypes.DO_ACTION_ON_COORDINATE, this, (withObject) => {
             if (typeof withObject.getContent === 'function') {
                 const content = withObject.getContent();
                 if (!content) {
