@@ -26,8 +26,8 @@ export class Camera extends GameObject {
     centerPositionOnTarget(position) {
         // create a camera offset
         const personHalf = 8;
-        const canvasWidth = 320;
-        const canvasHeight = 180;
+        const canvasWidth = 1280;
+        const canvasHeight = 1280;
         const halfWidth = -personHalf + canvasWidth / 2;
         const halfHeight = -personHalf + canvasHeight / 2;
         this.position = new Vector2(-position.x + halfWidth, -position.y + halfHeight);

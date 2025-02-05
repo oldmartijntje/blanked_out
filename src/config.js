@@ -10,6 +10,6 @@ export const config = {
     "sizes": {
         "gridSize": 64,
         "canvasWidth": 1280,
-        "canvasHeight": 720,
+        "canvasHeight": 1280,
     }
 };

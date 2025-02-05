@@ -12,11 +12,13 @@ export class BaseLevel extends Level {
         this.background = new Sprite({
             resource: resources.images.sky,
             frameSize: new Vector2(config.sizes.canvasWidth, config.sizes.canvasHeight),
+            scale: 8
         });
 
         const groundSprite = new Sprite({
             resource: resources.images.ground,
             frameSize: new Vector2(config.sizes.canvasWidth, config.sizes.canvasHeight),
+            scale: 4
         });
 
         this.addChild(groundSprite);
