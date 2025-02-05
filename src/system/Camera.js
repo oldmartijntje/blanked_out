@@ -1,22 +1,24 @@
-import { events } from "./Events.js";
+import { events, CHANGE_SCENE } from "./Events.js";
 import { GameObject } from "./GameObject.js";
 import { Vector2 } from "./Vector2.js";
 
 export class Camera extends GameObject {
+    public zoom: number;
     constructor() {
         super({});
+        this.zoom = 1;
         this.offset = new Vector2(0, 0);
         this.onInit();
     }
 
     onInit() {
-        events.on('HERO_POSITION', this, (value) => {
+        events.on(CAMERA_POSITION, this, (value) => {
             if (value.focus) {
                 this.centerPositionOnTarget(value.position);
             }
         });
 
-        events.on('CHANGE_LEVEL', this, (newMap) => {
+        events.on(CHANGE_LEVEL, this, (newMap) => {
             this.centerPositionOnTarget(newMap.heroStartPosition);
         });
     }

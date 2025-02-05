@@ -82,7 +82,7 @@ export class SpriteTextString extends GameObject {
                 this.showingIndex = this.finalIndex;
                 return;
             }
-            events.emit('END_TEXT_BOX');
+            events.emit(END_TEXT_BOX);
 
         }
 

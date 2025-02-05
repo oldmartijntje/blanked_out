@@ -1,5 +1,5 @@
 import { Camera } from "../../system/Camera.js";
-import { events } from "../../system/Events.js";
+import { events, CHANGE_SCENE, END_TEXT_BOX, START_TEXT_BOX } from "../../system/Events.js";
 import { GameObject } from "../../system/GameObject.js";
 import { Input } from "../../system/Input.js";
 import { storyFlags } from "../../system/StoryFlags.js";
@@ -24,7 +24,7 @@ export class Main extends GameObject {
         const inventory = new Inventory();
         this.addChild(inventory);
 
-        events.on('CHANGE_LEVEL', this, newLevelInstance => {
+        events.on(CHANGE_SCENE, this, newLevelInstance => {
             this.setLevel(newLevelInstance);
         });
 
@@ -56,10 +56,10 @@ export class Main extends GameObject {
                     textBox = new SpriteTextString(options);
                 }
                 this.addChild(textBox);
-                events.emit('START_TEXT_BOX');
+                events.emit(START_TEXT_BOX);
 
                 // Remove the text box when the player presses space
-                const endingSub = events.on('END_TEXT_BOX', this, () => {
+                const endingSub = events.on(END_TEXT_BOX, this, () => {
                     textBox.destroy();
                     events.off(endingSub);
                 });

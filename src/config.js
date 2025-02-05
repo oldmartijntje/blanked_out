@@ -8,8 +8,8 @@ export const config = {
         "rightKeys": ["ArrowRight", "KeyD"],
     },
     "sizes": {
-        "gridSize": 16,
-        "canvasWidth": 320,
-        "canvasHeight": 180,
+        "gridSize": 64,
+        "canvasWidth": 1280,
+        "canvasHeight": 720,
     }
 };
