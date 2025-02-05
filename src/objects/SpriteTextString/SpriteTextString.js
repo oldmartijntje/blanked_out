@@ -1,4 +1,4 @@
-import { events } from "../../system/Events.js";
+import { events, EventTypes } from "../../system/Events.js";
 import { GameObject } from "../../system/GameObject.js";
 import { resources } from "../../system/Resource.js";
 import { Sprite } from "../../system/Sprite.js";
@@ -82,7 +82,7 @@ export class SpriteTextString extends GameObject {
                 this.showingIndex = this.finalIndex;
                 return;
             }
-            events.emit(END_TEXT_BOX);
+            events.emit(EventTypes.END_TEXT_BOX);
 
         }
 

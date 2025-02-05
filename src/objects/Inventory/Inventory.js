@@ -1,4 +1,4 @@
-import { events, PLAYER_PICK_UP_ITEM } from "../../system/Events.js";
+import { events, EventTypes } from "../../system/Events.js";
 import { GameObject } from "../../system/GameObject.js";
 import { resources } from "../../system/Resource.js";
 import { Sprite } from "../../system/Sprite.js";
@@ -36,7 +36,7 @@ export class Inventory extends GameObject {
     }
 
     onInit() {
-        events.on(PLAYER_PICK_UP_ITEM, this, (value) => { // move to OnInit
+        events.on(EventTypes.PLAYER_PICK_UP_ITEM, this, (value) => { // move to OnInit
             this.items.push({
                 id: this.nextId++,
                 image: value.image,

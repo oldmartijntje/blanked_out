@@ -32,8 +32,12 @@ class Events {
 }
 
 export const events = new Events();
-export const PLAYER_PICK_UP_ITEM = 'PLAYER_PICK_UP_ITEM';
-export const CHANGE_SCENE = 'CHANGE_SCENE';
-export const START_TEXT_BOX = 'START_TEXT_BOX';
-export const END_TEXT_BOX = 'END_TEXT_BOX';
-export const CAMERA_POSITION = 'CAMERA_POSITION';
+
+export class EventTypes {
+    PLAYER_PICK_UP_ITEM = 'PLAYER_PICK_UP_ITEM';
+    CHANGE_SCENE = 'CHANGE_SCENE';
+    START_TEXT_BOX = 'START_TEXT_BOX';
+    END_TEXT_BOX = 'END_TEXT_BOX';
+    CAMERA_POSITION = 'CAMERA_POSITION';
+    DO_ACTION_ON_COORDINATE = 'DO_ACTION_ON_COORDINATE';
+}
