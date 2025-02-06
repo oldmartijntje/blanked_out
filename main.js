@@ -141,8 +141,8 @@ const onTouchMove = (event) => {
             if (newScale >= MIN_SCALE && newScale <= MAX_SCALE) {
                 // Calculate zoom center point (midpoint between touches)
                 const rect = canvas.getBoundingClientRect();
-                const centerX = ((touch1.clientX + touch2.clientX) / 2 - rect.left);
-                const centerY = ((touch1.clientY + touch2.clientY) / 2 - rect.top);
+                const centerX = ((touch1.clientX + touch2.clientX) / 2);
+                const centerY = ((touch1.clientY + touch2.clientY) / 2);
 
                 // Convert center point to world coordinates before scaling
                 const worldCenterX = (centerX - canvas.width / 2) / scale + mainScene.camera.position.x;

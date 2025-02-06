@@ -9,7 +9,7 @@ export const config = {
     },
     "sizes": {
         "gridSize": 64,
-        "canvasWidth": 1280,
-        "canvasHeight": 1280,
+        "BackgroundWidth": 1280,
+        "BackgroundHeight": 1280,
     }
 };
