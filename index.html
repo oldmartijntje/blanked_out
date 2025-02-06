@@ -11,30 +11,20 @@
     <meta property="og:image" content="https://api.oldmartijntje.nl/api/oldmartijntje.nl/assets/images/mii.png">
     <!-- <meta property="og:url" content=""> -->
     <meta property="og:type" content="website">
-  <script type="module" crossorigin src="/blanked_out/assets/index-DISax6AJ.js"></script>
+  <script type="module" crossorigin src="/blanked_out/assets/index-TRAy3mnI.js"></script>
   <link rel="stylesheet" crossorigin href="/blanked_out/assets/index-TGjZWMiz.css">
 </head>
 
 <body>
-    <div style="height: 100%; display: flex; flex-direction: column">
-        <canvas id="game-canvas" style="height: 100%;" width="1280" height="1280"></canvas>
+    <div style="width: 100%; height: 100%;" id="canvas-container">
+        <canvas id="game-canvas"></canvas>
     </div>
     <script>
         function resizeCanvas() {
             const canvas = document.getElementById('game-canvas');
-            const aspectRatio = canvas.width / canvas.height;
-            let width = window.innerWidth;
-            let height = window.innerHeight - 100;
-
-            if (width / height > aspectRatio) {
-                width = height * aspectRatio;
-            } else {
-                height = width / aspectRatio;
-            }
-
-            canvas.style.width = `${width}px`;
-            canvas.style.height = `${height}px`;
-            canvas.style.display = 'block';
+            const container = document.getElementById('canvas-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
         }
 
         window.addEventListener('resize', resizeCanvas);
