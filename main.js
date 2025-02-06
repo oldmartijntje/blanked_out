@@ -64,7 +64,7 @@ const onPointerMove = (event) => {
     if (isDragging) {
         const currentX = event.clientX || event.touches[0].clientX;
         const currentY = event.clientY || event.touches[0].clientY;
-        const speedFactor = event.touches ? 1 : 1.75; // Slow down movement on PC
+        const speedFactor = event.touches ? 1 : 1; // Slow down movement on PC
         mainScene.camera.position.x += (currentX - lastX) * speedFactor / scale;
         mainScene.camera.position.y += (currentY - lastY) * speedFactor / scale;
         lastX = currentX;
