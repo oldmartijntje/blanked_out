@@ -2,6 +2,7 @@ import { Vector2 } from "./src/system/Vector2.js";
 import { GameLoop } from "./src/system/GameLoop.js";
 import { Main } from "./src/objects/Main/Main.js";
 import { BaseLevel } from "./src/levels/BaseLevel.js";
+import client from "./src/services/mqttService.js";
 
 const canvas = document.querySelector("#game-canvas");
 const ctx = canvas.getContext("2d");

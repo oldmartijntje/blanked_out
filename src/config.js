@@ -11,5 +11,9 @@ export const config = {
         "gridSize": 64,
         "BackgroundWidth": 1280,
         "BackgroundHeight": 1280,
+    },
+    "MQTT": {
+        "brokerUrl+port": "test.mosquitto.org:8081",
+        "topicBase": "https://oldmartijntje.github.io/blanked_out/"
     }
 };
