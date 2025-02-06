@@ -4,12 +4,17 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [],
+    optimizeDeps: {
+        include: ["mqtt"],
+    },
     base: '/blanked_out/',
     build: {
         outDir: 'dist',
-        emptyOutDir: true, // This will clear the output directory before building
+        emptyOutDir: true,
         rollupOptions: {
-            external: [], // 👈 This tells Rollup to bundle everything
+            output: {
+                format: "es",
+            },
         }
     },
 })
