@@ -21,6 +21,12 @@ export class Main extends GameObject {
     }
 
     onInit() {
+        events.on(EventTypes.USER_CLICK_CANVAS, this, (position) => {
+            console.log(position, 1);
+        });
+        events.on(EventTypes.USER_DOUBLE_CLICK_CANVAS, this, (position) => {
+            console.log(position, 2);
+        });
         const inventory = new Inventory();
         this.addChild(inventory);
 
@@ -67,6 +73,10 @@ export class Main extends GameObject {
 
 
         });
+    }
+
+    registerMouseMovement(canvas) {
+        this.input.registerMouseMovement(canvas, this.camera);
     }
 
     setLevel(newLevelInstance) {
