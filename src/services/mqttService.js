@@ -1,5 +1,5 @@
 // mqttClient.js
-import mqtt from 'mqtt';
+import { connect } from "mqtt";
 import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
 
@@ -8,7 +8,7 @@ const options = {
     clientId: `mqttjs_${Math.random().toString(16).slice(2, 8)}`,
 };
 
-const client = mqtt.connect(brokerUrl, options);
+const client = connect(brokerUrl, options);
 
 client.on('connect', () => {
     console.log('Connected to MQTT broker');
