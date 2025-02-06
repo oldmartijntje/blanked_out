@@ -155,8 +155,8 @@ const onTouchMove = (event) => {
                 const newWorldCenterX = (centerX - canvas.width / 2) / scale + mainScene.camera.position.x;
                 const newWorldCenterY = (centerY - canvas.height / 2) / scale + mainScene.camera.position.y;
 
-                mainScene.camera.position.x += worldCenterX - newWorldCenterX;
-                mainScene.camera.position.y += worldCenterY - newWorldCenterY;
+                mainScene.camera.position.x += centerX - (centerX - lastX) * scale;
+                mainScene.camera.position.y += centerY - (centerY - lastY) * scale;;
             }
         }
 
