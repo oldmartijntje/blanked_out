@@ -20,12 +20,20 @@ let lastTouchDistance = 0;
 let isZoomLimitReached = false;
 const MIN_SCALE = 0.5;
 const MAX_SCALE = 3;
+let dragStartTime;
 
 // Update and draw functions (unchanged)
 const update = (deltaTime) => {
     mainScene.stepEntry(deltaTime, mainScene);
     mainScene.input?.update();
 };
+
+const handleClick = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX || e.touches[0].clientX) - rect.left - lastX) / scale;
+    const clickY = ((e.clientY || e.touches[0].clientY) - rect.top - lastY) / scale;
+    console.log("Clicked at", clickX, clickY);
+}
 
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -58,6 +66,7 @@ const onPointerDown = (event) => {
     isDragging = true;
     lastX = event.clientX || event.touches[0].clientX;
     lastY = event.clientY || event.touches[0].clientY;
+    dragStartTime = new Date().getTime();
 };
 
 const onPointerMove = (event) => {
@@ -70,37 +79,16 @@ const onPointerMove = (event) => {
         lastX = currentX;
         lastY = currentY;
     }
-
-    if (event.touches && event.touches.length === 2) {
-        event.preventDefault();
-        const touch1 = event.touches[0];
-        const touch2 = event.touches[1];
-        const currentTouchDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-
-        if (lastTouchDistance > 0) {
-            const zoomFactor = currentTouchDistance / lastTouchDistance;
-            const newScale = scale * zoomFactor;
-
-            if (newScale >= MIN_SCALE && newScale <= MAX_SCALE) {
-                scale = newScale;
-
-                const centerX = (touch1.clientX + touch2.clientX) / 2;
-                const centerY = (touch1.clientY + touch2.clientY) / 2;
-                mainScene.camera.position.x = centerX - (centerX - mainScene.camera.position.x) * zoomFactor;
-                mainScene.camera.position.y = centerY - (centerY - mainScene.camera.position.y) * zoomFactor;
-            } else {
-                isZoomLimitReached = true;
-            }
-        }
-
-        lastTouchDistance = currentTouchDistance;
-    }
 };
 
-const onPointerUp = () => {
+const onPointerUp = (e) => {
     isDragging = false;
-    lastTouchDistance = 0;
-    isZoomLimitReached = false;
+    const dragEndTime = new Date().getTime();
+    const dragDuration = dragEndTime - dragStartTime;
+
+    if (dragDuration < 200 && !isZoomLimitReached) {
+        handleClick(e);
+    }
 };
 
 const onWheel = (event) => {
@@ -117,10 +105,11 @@ const onTouchStart = (event) => {
         const touch1 = event.touches[0];
         const touch2 = event.touches[1];
         lastTouchDistance = Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
-    } else if (event.touches.length === 1) {
+    } else if (e.touches.length === 1) {
         isDragging = true;
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
+        dragStartTime = new Date().getTime();
     }
 };
 
@@ -163,10 +152,18 @@ const onTouchMove = (event) => {
     }
 };
 
-const onTouchEnd = () => {
+const onTouchEnd = (e) => {
+    if (e.touches.length < 2) {
+        lastTouchDistance = 0;
+        isZoomLimitReached = false; // Reset the flag when touch ends
+    }
+    const dragEndTime = new Date().getTime();
+    const dragDuration = dragEndTime - dragStartTime;
+
+    if (dragDuration < 200 && !isZoomLimitReached) {
+        handleClick(e);
+    }
     isDragging = false;
-    lastTouchDistance = 0;
-    isZoomLimitReached = false;
 };
 
 canvas.addEventListener("mousedown", onPointerDown);
