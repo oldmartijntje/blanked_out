@@ -1,5 +1,5 @@
 // mqttClient.js
-import mqtt from '../../node_modules/mqtt/dist/mqtt.esm.js';
+import mqtt from 'mqtt';
 import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
 
