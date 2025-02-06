@@ -8,5 +8,8 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         emptyOutDir: true, // This will clear the output directory before building
+        rollupOptions: {
+            external: [], // 👈 This tells Rollup to bundle everything
+        }
     },
 })
