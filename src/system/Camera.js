@@ -6,7 +6,7 @@ export class Camera extends GameObject {
     zoom = 1;
     constructor() {
         super({});
-        this.zoom = 1;
+        this.zoom = 0.5;
         this.offset = new Vector2(0, 0);
         this.onInit();
     }

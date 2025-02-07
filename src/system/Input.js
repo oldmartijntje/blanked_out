@@ -10,7 +10,7 @@ export const ZOOM_MINUS = 'ZOOM_MINUS';
 export const ZOOM_PLUS = 'ZOOM_PLUS';
 
 const zoomSpeed = 0.05;
-const MIN_SCALE = 0.5;
+const MIN_SCALE = 0.25;
 const MAX_SCALE = 3;
 
 export const APP_KEYS = { // The KEY is the valuye that the program will use. The VALUE is the key that the user will press.
