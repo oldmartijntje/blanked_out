@@ -6,6 +6,8 @@ export const RIGHT = 'RIGHT';
 export const UP = 'UP';
 export const DOWN = 'DOWN';
 export const SPACE = 'Space';
+export const ZOOM_MINUS = 'ZOOM_MINUS';
+export const ZOOM_PLUS = 'ZOOM_PLUS';
 
 const zoomSpeed = 0.05;
 const MIN_SCALE = 0.5;
@@ -17,8 +19,10 @@ export const APP_KEYS = { // The KEY is the valuye that the program will use. Th
     LEFT: config.keys.leftKeys,
     RIGHT: config.keys.rightKeys,
     SPACE: [SPACE],
+    ZOOM_MINUS: config.keys.zoomMinus,
+    ZOOM_PLUS: config.keys.zoomPlus,
 };
-export const DIRECTIONS_KEYS = [LEFT, RIGHT, UP, DOWN];
+export const DIRECTIONS_KEYS = [LEFT, RIGHT, UP, DOWN, SPACE, ZOOM_MINUS, ZOOM_PLUS];
 // all above has gotta go into a config file
 
 export class Input {
@@ -27,6 +31,7 @@ export class Input {
         this.keys = {};
         this.lastKeys = {};
 
+        this.camera;
         this.canvas;
         this.isDragging = false;
         this.startX = 0, this.startY = 0;
@@ -102,6 +107,15 @@ export class Input {
     update() {
         // Diff the keys to get the keys that were pressed since the last update
         this.lastKeys = { ...this.keys };
+        if (this.heldDirections.length > 0) {
+            if ((this.heldDirections[0] === ZOOM_MINUS || this.heldDirections[0] === ZOOM_PLUS) && this.camera) {
+                if (this.heldDirections[0] === ZOOM_MINUS && this.camera.zoom > MIN_SCALE) {
+                    this.camera.zoom -= zoomSpeed / 2;
+                } else if (this.heldDirections[0] === ZOOM_PLUS && this.camera.zoom < MAX_SCALE) {
+                    this.camera.zoom += zoomSpeed / 2;
+                }
+            }
+        }
     }
 
     getActionJustPressed(keyCode) {
@@ -273,6 +287,7 @@ export class Input {
 
     registerMouseMovement(canvas, camera) {
         this.canvas = canvas;
+        this.camera = camera;
         canvas.addEventListener("mousedown", (event) => { this.onPointerDown(event) });
         canvas.addEventListener("mousemove", (event) => { this.onPointerMove(event, camera) });
         canvas.addEventListener("mouseup", (event) => { this.onPointerUp(event, camera) });

@@ -6,6 +6,8 @@ export const config = {
         "downKeys": ["ArrowDown", "KeyS"],
         "leftKeys": ["ArrowLeft", "KeyA"],
         "rightKeys": ["ArrowRight", "KeyD"],
+        "zoomMinus": ["NumpadSubtract"],
+        "zoomPlus": ["NumpadAdd"],
     },
     "sizes": {
         "gridSize": 64,
