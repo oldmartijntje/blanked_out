@@ -1,6 +1,11 @@
-// mqttClient.js
+import { events, EventTypes } from '../system/Events.js';
 import mqtt from 'https://esm.sh/mqtt@5.10.3';
 import { config } from '../config.js';
+
+export class CommunicationCodes {
+    static I_AM_A_LOBBY = 'Stone Age';
+    static CONNECTION_REQUEST = 'Getting an Upgrade';
+}
 
 const brokerUrl = 'wss://' + config.MQTT['brokerUrl+port'];
 
@@ -8,6 +13,7 @@ class MqttService {
     deviceIdentifier;
     ALPHANUMERIC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     client;
+    username = '';
     creationIdentifier = this.getRandomIdentifier(8);
     constructor() {
         var string = localStorage.getItem('deviceIdentifier');
@@ -23,7 +29,21 @@ class MqttService {
             console.log('Connected to MQTT broker');
         });
         this.client.on('message', (topic, message) => {
-            this.receivedMessage(topic, message);
+            this.onReceivedMessage(topic, message);
+        });
+        events.emit(EventTypes.GET_DATA, {
+            key: 'username',
+            onSuccess: (username) => {
+                this.username = username;
+                console.log('Username:', this.username);
+            },
+            onError: () => {
+                this.username = 'Player' + (Math.floor(Math.random() * 89999) + 10000);
+                events.emit(EventTypes.SET_DATA, {
+                    key: 'username',
+                    value: this.username
+                });
+            }
         });
     }
 
