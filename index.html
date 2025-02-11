@@ -27,7 +27,7 @@
         <canvas id="game-canvas"></canvas>
     </div>
     <div id="homeMenu" style="display: none;">
-        <div class="modal show" tabindex="-1" style="display: block;">
+        <div class="modal show" tabindex="-1" style="display: block;" id="homeModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -53,10 +53,59 @@
                 </div>
             </div>
         </div>
+        <div class="modal show" tabindex="-1" style="display: none;" id="onlineMultiplayerModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Online Multiplayer</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to host or join a game? Hosting will require a little more RAM.<br />
+                            There are currently <span id="lobbiesFound">0</span> games discoverable.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="joinButton" class="btn btn-primary">Join game</button>
+                        <button type="button" id="hostButton" class="btn btn-success">Host
+                            Game</button>
+                        <button type="button" class="btn btn-secondary backButton">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal show" tabindex="-1" style="display: none;" id="joinModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Joining Multiplayer</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary backButton">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal show" tabindex="-1" style="display: none;" id="hostModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Hosting Multiplayer</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary backButton">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="mobileOverlay">
-        <button class="gameController NumpadAdd">+</button>
-        <button class="gameController NumpadSubtract">-</button>
+        <button class="gameController NumpadAdd btn btn-primary">+</button>
+        <button class="gameController NumpadSubtract  btn btn-primary">-</button>
     </div>
     <script type="module" src="./main.js"></script>
     <script>
