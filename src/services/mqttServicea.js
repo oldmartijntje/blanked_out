@@ -19,7 +19,7 @@ class MqttService {
         });
     }
 
-    receivedMessage(topic, message) {
+    onReceivedMessage(topic, message) {
 
     }
 
