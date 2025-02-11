@@ -46,7 +46,9 @@ class MqttService {
             else console.log(`Unsubscribed from topic: ${topic}`);
         });
     }
-}
 
-var mqttService = new MqttService();
-export { mqttService };
+    resetMqtt() {
+
+    }
+}
+export { MqttService };
