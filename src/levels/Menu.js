@@ -3,7 +3,9 @@ import { Sprite } from "../system/Sprite.js";
 import { Vector2 } from "../system/Vector2.js";
 import { Level } from "../objects/Level/Level.js";
 import { config } from "../config.js";
-
+import { events, EventTypes } from "../system/Events.js";
+import { CommunicatorClient } from "../services/CommunicatorClient.js";
+import { CommunicatorHost } from "../services/CommunicatorHost.js";
 
 export class Menu extends Level {
     menu;
@@ -19,6 +21,8 @@ export class Menu extends Level {
     backButtons = [];
     joinModal;
     hostModal;
+    usernameField;
+    client;
     constructor(params = {}) {
         super({});
         this.background = new Sprite({
@@ -53,10 +57,24 @@ export class Menu extends Level {
         this.joinModal.style.display = "none";
         this.hostModal = document.getElementById("hostModal");
         this.hostModal.style.display = "none";
+        this.usernameField = document.getElementById("usernameField");
+        this.usernameField.addEventListener("change", () => { this.changeUsername() });
+    }
+
+    changeUsername() {
+        this.client.username = this.usernameField.value;
+        events.emit(EventTypes.SET_DATA, {
+            key: 'username',
+            value: this.client.username
+        });
+        this.client.username = this.usernameField.value;
     }
 
 
     onInit() {
+        this.client = new CommunicatorClient();
+        this.client.discoveryTopic();
+        events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
     }
 
     clickedButton(id) {
@@ -64,10 +82,17 @@ export class Menu extends Level {
         if (id === "online") {
             this.setModalAsActive("online");
         } else if (id === "back") {
+            this.client = new CommunicatorClient();
+            this.client.discoveryTopic();
+            events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
             this.setModalAsActive("home");
         } else if (id === "host") {
+            this.client = new CommunicatorHost();
+            this.client.discoveryTopic();
+            events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
             this.setModalAsActive("host");
         } else if (id === "join") {
+            this.usernameField.value = this.client.username;
             this.setModalAsActive("join");
         }
     }
