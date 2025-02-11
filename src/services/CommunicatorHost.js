@@ -1,4 +1,3 @@
-import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
 import { MqttService, CommunicationCodes } from './MqttService.js';
 
