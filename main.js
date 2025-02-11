@@ -2,7 +2,7 @@ import { Vector2 } from "./src/system/Vector2.js";
 import { GameLoop } from "./src/system/GameLoop.js";
 import { Main } from "./src/objects/Main/Main.js";
 import { BaseLevel } from "./src/levels/BaseLevel.js";
-import client from "./src/services/mqttService.js";
+import { Menu } from "./src/levels/Menu.js";
 
 const canvas = document.querySelector("#game-canvas");
 const ctx = canvas.getContext("2d");
@@ -10,7 +10,7 @@ const ctx = canvas.getContext("2d");
 const mainScene = new Main({
     position: new Vector2(0, 0),
 });
-mainScene.setLevel(new BaseLevel());
+mainScene.setLevel(new Menu());
 mainScene.registerMouseMovement(canvas);
 
 const update = (deltaTime) => {
