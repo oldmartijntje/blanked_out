@@ -5,30 +5,13 @@ import { MqttService } from './MqttService.js';
 class CommunicationCodes {
     static I_AM_A_LOBBY = 'Stone Age';
     static CONNECTION_REQUEST = 'Getting an Upgrade';
-
 }
 
-
-class CommunicatorClient extends MqttService {
+class CommunicatorHost extends MqttService {
     openLobbies = {};
-    username = '';
     constructor() {
         super();
-
-        events.emit(EventTypes.GET_DATA, {
-            key: 'username',
-            onSuccess: (username) => {
-                this.username = username;
-                console.log('Username:', this.username);
-            },
-            onError: () => {
-                this.username = 'Player' + (Math.floor(Math.random() * 89999) + 10000);
-                events.emit(EventTypes.SET_DATA, {
-                    key: 'username',
-                    value: this.username
-                });
-            }
-        });
+        console.log(this.creationIdentifier);
     }
 
     onReceivedMessage(topic, message) {
@@ -58,4 +41,4 @@ class CommunicatorClient extends MqttService {
 
 }
 
-export { CommunicatorClient };
+export { CommunicatorHost };
