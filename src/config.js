@@ -16,6 +16,7 @@ export const config = {
     },
     "MQTT": {
         "brokerUrl+port": "test.mosquitto.org:8081",
-        "topicBase": "https://oldmartijntje.github.io/blanked_out/"
+        "topicBase": "https://oldmartijntje.github.io/blanked_out/",
+        "lobbyTopic": "https://oldmartijntje.github.io/blanked_out/discovery"
     }
 };

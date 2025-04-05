@@ -1,6 +1,5 @@
 // mqttClient.js
 import mqtt from 'https://esm.sh/mqtt@5.10.3';
-import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
 
 const brokerUrl = 'wss://' + config.MQTT['brokerUrl+port'];
@@ -8,35 +7,48 @@ const options = {
     clientId: `mqttjs_${Math.random().toString(16).slice(2, 8)}`,
 };
 
-const client = mqtt.connect(brokerUrl, options);
+class MqttService {
+    client;
+    constructor() {
+        this.client = mqtt.connect(brokerUrl, options);
+        this.client.on('connect', () => {
+            console.log('Connected to MQTT broker');
+        });
+        this.client.on('message', (topic, message) => {
+            this.receivedMessage(topic, message);
+        });
+    }
 
-client.on('connect', () => {
-    console.log('Connected to MQTT broker');
-});
+    onReceivedMessage(topic, message) {
 
-client.on('message', (topic, message) => {
-    console.log(`Received message: ${message.toString()} on topic: ${topic}`);
-});
+    }
 
-// Function to publish a message
-export const publishMessage = (topic, message) => {
-    topic = config.MQTT.topicBase + topic;
-    client.publish(topic, message, {}, (err) => {
-        if (err) console.error('Publish error:', err);
-        else console.log(`Message sent to ${topic}: ${message}`);
-    });
-};
+    publishMessage(topic, message) {
+        topic = config.MQTT.topicBase + topic;
+        this.client.publish(topic, message, {}, (err) => {
+            if (err) console.error('Publish error:', err);
+            else console.log(`Message sent to ${topic}: ${message}`);
+        });
+    }
 
-// Function to subscribe to a topic
-export const subscribeToTopic = (topic) => {
-    topic = config.MQTT.topicBase + topic;
-    client.subscribe(topic, (err) => {
-        if (err) console.error('Subscribe error:', err);
-        else console.log(`Subscribed to topic: ${topic}`);
-    });
-};
-subscribeToTopic('test');
-publishMessage('test', 'Hello from MQTT service');
+    subscribeToTopic(topic) {
+        topic = config.MQTT.topicBase + topic;
+        this.client.subscribe(topic, (err) => {
+            if (err) console.error('Subscribe error:', err);
+            else console.log(`Subscribed to topic: ${topic}`);
+        });
+    }
 
-// Exporting client for direct use if needed
-export default client;
+    unsubscribeFromTopic(topic) {
+        topic = config.MQTT.topicBase + topic;
+        this.client.unsubscribe(topic, (err) => {
+            if (err) console.error('Unsubscribe error:', err);
+            else console.log(`Unsubscribed from topic: ${topic}`);
+        });
+    }
+
+    resetMqtt() {
+
+    }
+}
+export { MqttService };
