@@ -1,32 +1,16 @@
 import { Vector2 } from "./src/system/Vector2.js";
 import { GameLoop } from "./src/system/GameLoop.js";
 import { Main } from "./src/objects/Main/Main.js";
-import { Menu } from "./src/levels/Menu.js";
-import { events, EventTypes } from "./src/system/Events.js";
-import { Databank } from "./src/system/Databank.js";
+import { BaseLevel } from "./src/levels/BaseLevel.js";
+import client from "./src/services/mqttService.js";
 
 const canvas = document.querySelector("#game-canvas");
 const ctx = canvas.getContext("2d");
-const databank = new Databank();
-
-var MqttCommunicator = null;
-events.on(EventTypes.SETUP_MQTT_CONNECTOR, this, (connector) => {
-    if (MqttCommunicator) {
-        MqttCommunicator.resetMqtt();
-    }
-    MqttCommunicator = connector;
-}
-);
-events.on(EventTypes.CLOSE_MQTT_CONNECTOR, this, () => {
-    MqttCommunicator.resetMqtt();
-}
-);
 
 const mainScene = new Main({
     position: new Vector2(0, 0),
 });
-mainScene.addChild(databank);
-mainScene.setLevel(new Menu());
+mainScene.setLevel(new BaseLevel());
 mainScene.registerMouseMovement(canvas);
 
 const update = (deltaTime) => {

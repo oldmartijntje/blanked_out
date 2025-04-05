@@ -1,87 +1,42 @@
-import { events, EventTypes } from '../system/Events.js';
+// mqttClient.js
 import mqtt from 'https://esm.sh/mqtt@5.10.3';
+import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
 
-export class CommunicationCodes {
-    static I_AM_A_LOBBY = 'Stone Age';
-    static CONNECTION_REQUEST = 'Getting an Upgrade';
-}
-
 const brokerUrl = 'wss://' + config.MQTT['brokerUrl+port'];
+const options = {
+    clientId: `mqttjs_${Math.random().toString(16).slice(2, 8)}`,
+};
 
-class MqttService {
-    deviceIdentifier;
-    ALPHANUMERIC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    client;
-    username = '';
-    creationIdentifier = this.getRandomIdentifier(8);
-    constructor() {
-        var string = localStorage.getItem('deviceIdentifier');
-        if (string) {
-            this.deviceIdentifier = string;
-        } else {
-            this.deviceIdentifier = this.getRandomIdentifier(32);
-            localStorage.setItem('deviceIdentifier', this.deviceIdentifier);
-        }
+const client = mqtt.connect(brokerUrl, options);
 
-        this.client = mqtt.connect(brokerUrl);
-        this.client.on('connect', () => {
-            console.log('Connected to MQTT broker');
-        });
-        this.client.on('message', (topic, message) => {
-            this.onReceivedMessage(topic, message);
-        });
-        events.emit(EventTypes.GET_DATA, {
-            key: 'username',
-            onSuccess: (username) => {
-                this.username = username;
-                console.log('Username:', this.username);
-            },
-            onError: () => {
-                this.username = 'Player' + (Math.floor(Math.random() * 89999) + 10000);
-                events.emit(EventTypes.SET_DATA, {
-                    key: 'username',
-                    value: this.username
-                });
-            }
-        });
-    }
+client.on('connect', () => {
+    console.log('Connected to MQTT broker');
+});
 
-    onReceivedMessage(topic, message) {
+client.on('message', (topic, message) => {
+    console.log(`Received message: ${message.toString()} on topic: ${topic}`);
+});
 
-    }
+// Function to publish a message
+export const publishMessage = (topic, message) => {
+    topic = config.MQTT.topicBase + topic;
+    client.publish(topic, message, {}, (err) => {
+        if (err) console.error('Publish error:', err);
+        else console.log(`Message sent to ${topic}: ${message}`);
+    });
+};
 
+// Function to subscribe to a topic
+export const subscribeToTopic = (topic) => {
+    topic = config.MQTT.topicBase + topic;
+    client.subscribe(topic, (err) => {
+        if (err) console.error('Subscribe error:', err);
+        else console.log(`Subscribed to topic: ${topic}`);
+    });
+};
+subscribeToTopic('test');
+publishMessage('test', 'Hello from MQTT service');
 
-    getRandomIdentifier(length = 8) {
-        return Array.from({ length }, () => this.ALPHANUMERIC[Math.floor(Math.random() * this.ALPHANUMERIC.length)]).join('');
-    }
-
-    publishMessage(topic, message) {
-        topic = config.MQTT.topicBase + topic;
-        this.client.publish(topic, message, {}, (err) => {
-            if (err) console.error('Publish error:', err);
-            else console.log(`Message sent to ${topic}: ${message}`);
-        });
-    }
-
-    subscribeToTopic(topic) {
-        topic = config.MQTT.topicBase + topic;
-        this.client.subscribe(topic, (err) => {
-            if (err) console.error('Subscribe error:', err);
-            else console.log(`Subscribed to topic: ${topic}`);
-        });
-    }
-
-    unsubscribeFromTopic(topic) {
-        topic = config.MQTT.topicBase + topic;
-        this.client.unsubscribe(topic, (err) => {
-            if (err) console.error('Unsubscribe error:', err);
-            else console.log(`Unsubscribed from topic: ${topic}`);
-        });
-    }
-
-    resetMqtt() {
-
-    }
-}
-export { MqttService };
+// Exporting client for direct use if needed
+export default client;
