@@ -1,26 +1,59 @@
-// mqttClient.js
+import { events, EventTypes } from '../system/Events.js';
 import mqtt from 'https://esm.sh/mqtt@5.10.3';
 import { config } from '../config.js';
 
+export class CommunicationCodes {
+    static I_AM_A_LOBBY = 'Stone Age';
+    static CONNECTION_REQUEST = 'Getting an Upgrade';
+}
+
 const brokerUrl = 'wss://' + config.MQTT['brokerUrl+port'];
-const options = {
-    clientId: `mqttjs_${Math.random().toString(16).slice(2, 8)}`,
-};
 
 class MqttService {
+    deviceIdentifier;
+    ALPHANUMERIC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     client;
+    username = '';
+    creationIdentifier = this.getRandomIdentifier(8);
     constructor() {
-        this.client = mqtt.connect(brokerUrl, options);
+        var string = localStorage.getItem('deviceIdentifier');
+        if (string) {
+            this.deviceIdentifier = string;
+        } else {
+            this.deviceIdentifier = this.getRandomIdentifier(32);
+            localStorage.setItem('deviceIdentifier', this.deviceIdentifier);
+        }
+
+        this.client = mqtt.connect(brokerUrl);
         this.client.on('connect', () => {
             console.log('Connected to MQTT broker');
         });
         this.client.on('message', (topic, message) => {
-            this.receivedMessage(topic, message);
+            this.onReceivedMessage(topic, message);
+        });
+        events.emit(EventTypes.GET_DATA, {
+            key: 'username',
+            onSuccess: (username) => {
+                this.username = username;
+                console.log('Username:', this.username);
+            },
+            onError: () => {
+                this.username = 'Player' + (Math.floor(Math.random() * 89999) + 10000);
+                events.emit(EventTypes.SET_DATA, {
+                    key: 'username',
+                    value: this.username
+                });
+            }
         });
     }
 
     onReceivedMessage(topic, message) {
 
+    }
+
+
+    getRandomIdentifier(length = 8) {
+        return Array.from({ length }, () => this.ALPHANUMERIC[Math.floor(Math.random() * this.ALPHANUMERIC.length)]).join('');
     }
 
     publishMessage(topic, message) {

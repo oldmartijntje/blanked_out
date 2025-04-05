@@ -1,20 +1,11 @@
 import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
-import { MqttService } from './MqttService.js';
-
-class CommunicationCodes {
-    static I_AM_A_LOBBY = 'Stone Age';
-    static CONNECTION_REQUEST = 'Getting an Upgrade';
-
-}
-const ALPHANUMERIC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+import { MqttService, CommunicationCodes } from './MqttService.js';
 
 class CommunicatorClient extends MqttService {
     openLobbies = {};
-    clientIdentifier = ALPHANUMERIC[Math.floor(Math.random() * ALPHANUMERIC.length)] + ALPHANUMERIC[Math.floor(Math.random() * ALPHANUMERIC.length)];
     constructor() {
         super();
-        console.log(this.clientIdentifier);
     }
 
     onReceivedMessage(topic, message) {
@@ -26,20 +17,25 @@ class CommunicatorClient extends MqttService {
         }
         if (parsed.Protocol == CommunicationCodes.I_AM_A_LOBBY) {
             this.openLobbies[parsed.LobbyId] = { date: new Date(), ...parsed };
-            events.emit(EventTypes.LOBBY_FOUND, openLobbies);
+            events.emit(EventTypes.LOBBY_FOUND, this.openLobbies);
         } else if (parsed.Protocol == CommunicationCodes.CONNECTION_REQUEST) {
 
         }
+        console.log('Received message:', topic, parsed);
     }
 
     discoveryTopic(unsubscribe = false) {
-        const topic = config.MQTT.topics.discovery;
+        const topic = config.MQTT["lobbyTopic"];
         if (unsubscribe) {
             this.unsubscribeFromTopic(topic);
         } else {
             this.subscribeToTopic(topic);
         }
 
+    }
+
+    resetMqtt() {
+        this.client.end();
     }
 
 }

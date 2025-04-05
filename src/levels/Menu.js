@@ -3,7 +3,9 @@ import { Sprite } from "../system/Sprite.js";
 import { Vector2 } from "../system/Vector2.js";
 import { Level } from "../objects/Level/Level.js";
 import { config } from "../config.js";
-
+import { events, EventTypes } from "../system/Events.js";
+import { CommunicatorClient } from "../services/CommunicatorClient.js";
+import { CommunicatorHost } from "../services/CommunicatorHost.js";
 
 export class Menu extends Level {
     menu;
@@ -19,6 +21,12 @@ export class Menu extends Level {
     backButtons = [];
     joinModal;
     hostModal;
+    usernameField;
+    client;
+    lobbyHostId;
+    amountOfLobbies = 0;
+    lobbiesInDiscovery = {};
+    discoveryAccordion;
     constructor(params = {}) {
         super({});
         this.background = new Sprite({
@@ -46,6 +54,7 @@ export class Menu extends Level {
         this.joinButton.addEventListener("click", () => { this.clickedButton("join") });
         this.hostButton.addEventListener("click", () => { this.clickedButton("host") });
         this.backButtons = document.getElementsByClassName("backButton");
+        this.discoveryAccordion = document.getElementById("discoveryAccordion");
         for (let i = 0; i < this.backButtons.length; i++) {
             this.backButtons[i].addEventListener("click", () => { this.clickedButton("back") });
         }
@@ -53,19 +62,89 @@ export class Menu extends Level {
         this.joinModal.style.display = "none";
         this.hostModal = document.getElementById("hostModal");
         this.hostModal.style.display = "none";
+        this.usernameField = document.getElementById("usernameField");
+        this.usernameField.addEventListener("change", () => { this.changeUsername() });
+        this.lobbyHostId = document.getElementById("lobbyHostId");
+    }
+
+    changeUsername() {
+        var username = this.usernameField.value;
+        if (username.length > 20) {
+            this.usernameField.value = this.client.username;
+            return;
+        } else if (username.length < 4) {
+            this.usernameField.value = this.client.username;
+            return;
+        }
+        this.client.username = username;
+        events.emit(EventTypes.SET_DATA, {
+            key: 'username',
+            value: this.client.username
+        });
+        this.client.username = this.usernameField.value;
     }
 
 
     onInit() {
+        this.client = new CommunicatorClient();
+        this.client.discoveryTopic();
+        events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
+        events.on(EventTypes.LOBBY_FOUND, this, (data) => {
+            this.amountOfLobbies = Object.keys(data).length;
+            this.lobbiesFound.innerHTML = this.amountOfLobbies;
+            if (JSON.stringify(Object.keys(data)) === JSON.stringify(Object.keys(this.lobbiesInDiscovery))) {
+                return;
+            }
+            this.lobbiesInDiscovery = data;
+            this.discoveryAccordion.innerHTML = "";
+            Object.keys(data).forEach(key => {
+                var accordion = document.createElement("div");
+                accordion.className = "accordion-item";
+                var header = document.createElement("h2");
+                header.className = "accordion-header";
+                var button = document.createElement("button");
+                button.className = "accordion-button";
+                button.type = "button";
+                button.setAttribute("data-bs-toggle", "collapse");
+                button.setAttribute("data-bs-target", "#collapse" + key);
+                button.setAttribute("aria-controls", "collapse" + key);
+                button.innerHTML = `${data[key].Username} (${data[key].playersConnected}/2)`;
+                header.appendChild(button);
+                accordion.appendChild(header);
+                var collapse = document.createElement("div");
+                collapse.id = "collapse" + key;
+                collapse.className = "accordion-collapse collapse";
+                collapse.setAttribute("aria-labelledby", "heading" + key);
+                collapse.setAttribute("data-bs-parent", "#discoveryAccordion");
+                var body = document.createElement("div");
+                body.className = "accordion-body";
+                body.innerHTML = `Host: ${data[key].Username}<br>Players: ${data[key].playersConnected}/2<br>Id: ${key}<br><button id="joinLobby${key}" class="btn btn-primary">Join</button>`;
+                collapse.appendChild(body);
+                accordion.appendChild(collapse);
+                this.discoveryAccordion.appendChild(accordion);
+                var joinButton = document.getElementById("joinLobby" + key);
+                joinButton.addEventListener("click", () => {
+                    // this.client.joinLobby(key);
+                    // this.setModalAsActive("home");
+                });
+            });
+        });
     }
 
     clickedButton(id) {
         console.log(id);
         if (id === "online") {
+            this.usernameField.value = this.client.username;
             this.setModalAsActive("online");
         } else if (id === "back") {
+            this.client = new CommunicatorClient();
+            this.client.discoveryTopic();
+            events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
             this.setModalAsActive("home");
         } else if (id === "host") {
+            this.client = new CommunicatorHost();
+            this.lobbyHostId.innerHTML = this.client.creationIdentifier;
+            events.emit(EventTypes.SETUP_MQTT_CONNECTOR, this.client);
             this.setModalAsActive("host");
         } else if (id === "join") {
             this.setModalAsActive("join");

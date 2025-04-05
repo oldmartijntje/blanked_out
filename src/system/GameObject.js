@@ -31,7 +31,7 @@ export class GameObject {
     }
 
     // called once per frame
-    step(_deltaTime) {
+    step(_deltaTime, root) {
         // override this method
     }
 
