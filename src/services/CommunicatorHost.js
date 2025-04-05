@@ -1,24 +1,17 @@
 import { events, EventTypes } from '../system/Events.js';
 import { config } from '../config.js';
-import { MqttService, CommunicationCodes } from './MqttService.js';
+import { MqttService } from './MqttService.js';
+
+class CommunicationCodes {
+    static I_AM_A_LOBBY = 'Stone Age';
+    static CONNECTION_REQUEST = 'Getting an Upgrade';
+}
 
 class CommunicatorHost extends MqttService {
     openLobbies = {};
-    pingInterval;
     constructor() {
         super();
         console.log(this.creationIdentifier);
-        this.pingInterval = setInterval(() => {
-            console.log('Ping');
-            this.publishMessage(config.MQTT["lobbyTopic"], JSON.stringify({
-                Protocol: CommunicationCodes.I_AM_A_LOBBY,
-                LobbyId: this.creationIdentifier,
-                Username: this.username,
-                playersConnected: 0,
-                Settings: {}
-            }));
-        }, 5000);
-
     }
 
     onReceivedMessage(topic, message) {
@@ -28,12 +21,22 @@ class CommunicatorHost extends MqttService {
             console.log('Error parsing message:', e);
             return;
         }
+        if (parsed.Protocol == CommunicationCodes.I_AM_A_LOBBY) {
+            this.openLobbies[parsed.LobbyId] = { date: new Date(), ...parsed };
+            events.emit(EventTypes.LOBBY_FOUND, openLobbies);
+        } else if (parsed.Protocol == CommunicationCodes.CONNECTION_REQUEST) {
 
+        }
     }
 
-    resetMqtt() {
-        this.client.end();
-        clearInterval(this.pingInterval);
+    discoveryTopic(unsubscribe = false) {
+        const topic = config.MQTT["lobbyTopic"];
+        if (unsubscribe) {
+            this.unsubscribeFromTopic(topic);
+        } else {
+            this.subscribeToTopic(topic);
+        }
+
     }
 
 }
