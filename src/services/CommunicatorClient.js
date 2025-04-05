@@ -7,28 +7,14 @@ class CommunicationCodes {
     static CONNECTION_REQUEST = 'Getting an Upgrade';
 
 }
-
+const ALPHANUMERIC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 class CommunicatorClient extends MqttService {
     openLobbies = {};
-    username = '';
+    clientIdentifier = ALPHANUMERIC[Math.floor(Math.random() * ALPHANUMERIC.length)] + ALPHANUMERIC[Math.floor(Math.random() * ALPHANUMERIC.length)];
     constructor() {
         super();
-
-        events.emit(EventTypes.GET_DATA, {
-            key: 'username',
-            onSuccess: (username) => {
-                this.username = username;
-                console.log('Username:', this.username);
-            },
-            onError: () => {
-                this.username = 'Player' + (Math.floor(Math.random() * 89999) + 10000);
-                events.emit(EventTypes.SET_DATA, {
-                    key: 'username',
-                    value: this.username
-                });
-            }
-        });
+        console.log(this.clientIdentifier);
     }
 
     onReceivedMessage(topic, message) {
@@ -47,7 +33,7 @@ class CommunicatorClient extends MqttService {
     }
 
     discoveryTopic(unsubscribe = false) {
-        const topic = config.MQTT["lobbyTopic"];
+        const topic = config.MQTT.topics.discovery;
         if (unsubscribe) {
             this.unsubscribeFromTopic(topic);
         } else {

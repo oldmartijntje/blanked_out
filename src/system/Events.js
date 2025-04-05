@@ -45,8 +45,4 @@ export class EventTypes {
     static LOBBY_FOUND = 'LOBBY_FOUND';
     static SETUP_MQTT_CONNECTOR = 'SETUP_MQTT_CONNECTOR';
     static CLOSE_MQTT_CONNECTOR = 'CLOSE_MQTT_CONNECTOR';
-    static SET_DATA = 'SET_DATA';
-    static GET_DATA = 'GET_DATA';
-    static SET_DEEP_DATA = 'SET_DEEP_DATA';
-    static GET_DEEP_DATA = 'GET_DEEP_DATA';
 }
