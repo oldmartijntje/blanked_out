@@ -93,5 +93,4 @@ class Databank extends GameObject {
         return this.data;
     }
 }
-
 export { Databank };
