@@ -124,8 +124,7 @@ export class Menu extends Level {
                 this.discoveryAccordion.appendChild(accordion);
                 var joinButton = document.getElementById("joinLobby" + key);
                 joinButton.addEventListener("click", () => {
-                    // this.client.joinLobby(key);
-                    // this.setModalAsActive("home");
+                    // implement
                 });
             });
         });

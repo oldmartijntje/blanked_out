@@ -20,6 +20,13 @@ class CommunicatorHost extends MqttService {
 
     }
 
+    setClientHostConnection(client, callback) {
+        // implement
+        callback(new hostClientLinkingResult(
+            true, this.creationIdentifier, {}
+        ));
+    }
+
     onReceivedMessage(topic, message) {
         try {
             var parsed = JSON.parse(message);

@@ -8,6 +8,10 @@ class CommunicatorClient extends MqttService {
         super();
     }
 
+    setClientHostConnection(host) {
+        // implement
+    }
+
     onReceivedMessage(topic, message) {
         try {
             var parsed = JSON.parse(message);
