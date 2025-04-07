@@ -22,7 +22,7 @@ class Resources {
         }
 
         this.images = {};
-
+        console.log(config['baseUrl'])
         // Define the base URL for assets
         var baseUrl = '';
         try {
