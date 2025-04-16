@@ -12,8 +12,9 @@ const TEXT_TTF_FONT = 'TEXT_TTF_FONT';
 const TEXT_MODE = TEXT_SPRITE_SHEET;
 
 export class Main extends GameObject {
-    constructor() {
+    constructor(settings) {
         super({});
+        this.position = settings.position
         this.level = null;
         this.input = new Input();
         this.camera = new Camera();

@@ -1,10 +1,268 @@
 {
-    "CheckDate": "2025-04-16 20:41:41",
-    "Errors": {},
+    "CheckDate": "2025-04-16 21:25:43",
+    "Errors": {
+        "src\\main.ts": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\main.ts at line 1: No .ts found in import",
+                    "Error in src\\main.ts at line 2: No .ts found in import",
+                    "Error in src\\main.ts at line 3: No .ts found in import",
+                    "Error in src\\main.ts at line 4: No .ts found in import",
+                    "Error in src\\main.ts at line 5: No .ts found in import",
+                    "Error in src\\main.ts at line 6: No .ts found in import",
+                    "Error in src\\main.ts at line 7: No .ts found in import",
+                    "Error in src\\main.ts at line 8: No .ts found in import"
+                ]
+            }
+        },
+        "src\\gameLogic\\PlayerGameLogic.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\gameLogic\\PlayerGameLogic.js at line 1: No .ts found in import",
+                    "Error in src\\gameLogic\\PlayerGameLogic.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\helpers\\grid.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\helpers\\grid.js at line 1: No .ts found in import",
+                    "Error in src\\helpers\\grid.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\levels\\BaseLevel.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\levels\\BaseLevel.js at line 1: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 2: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 3: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 4: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 5: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 6: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 7: No .ts found in import",
+                    "Error in src\\levels\\BaseLevel.js at line 8: No .ts found in import"
+                ]
+            }
+        },
+        "src\\levels\\Menu.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\levels\\Menu.js at line 1: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 2: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 3: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 4: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 5: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 6: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 7: No .ts found in import",
+                    "Error in src\\levels\\Menu.js at line 8: No .ts found in import"
+                ]
+            }
+        },
+        "src\\objects\\Inventory\\Inventory.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\objects\\Inventory\\Inventory.js at line 1: No .ts found in import",
+                    "Error in src\\objects\\Inventory\\Inventory.js at line 2: No .ts found in import",
+                    "Error in src\\objects\\Inventory\\Inventory.js at line 3: No .ts found in import",
+                    "Error in src\\objects\\Inventory\\Inventory.js at line 4: No .ts found in import",
+                    "Error in src\\objects\\Inventory\\Inventory.js at line 5: No .ts found in import"
+                ]
+            }
+        },
+        "src\\objects\\Level\\Level.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\objects\\Level\\Level.js at line 1: No .ts found in import"
+                ]
+            }
+        },
+        "src\\objects\\Main\\Main.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\objects\\Main\\Main.js at line 1: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 2: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 3: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 4: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 5: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 6: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 7: No .ts found in import",
+                    "Error in src\\objects\\Main\\Main.js at line 8: No .ts found in import"
+                ]
+            }
+        },
+        "src\\objects\\SpriteTextString\\SpriteTextString.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 1: No .ts found in import",
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 2: No .ts found in import",
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 3: No .ts found in import",
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 4: No .ts found in import",
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 5: No .ts found in import",
+                    "Error in src\\objects\\SpriteTextString\\SpriteTextString.js at line 6: No .ts found in import"
+                ]
+            }
+        },
+        "src\\objects\\TextBox\\TextBox.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\objects\\TextBox\\TextBox.js at line 1: No .ts found in import",
+                    "Error in src\\objects\\TextBox\\TextBox.js at line 2: No .ts found in import",
+                    "Error in src\\objects\\TextBox\\TextBox.js at line 3: No .ts found in import",
+                    "Error in src\\objects\\TextBox\\TextBox.js at line 4: No .ts found in import"
+                ]
+            }
+        },
+        "src\\services\\CommunicationHostClient.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\services\\CommunicationHostClient.js at line 1: No .ts found in import",
+                    "Error in src\\services\\CommunicationHostClient.js at line 2: No .ts found in import",
+                    "Error in src\\services\\CommunicationHostClient.js at line 3: No .ts found in import",
+                    "Error in src\\services\\CommunicationHostClient.js at line 4: No .ts found in import"
+                ]
+            }
+        },
+        "src\\services\\CommunicatorClient.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\services\\CommunicatorClient.js at line 1: No .ts found in import",
+                    "Error in src\\services\\CommunicatorClient.js at line 2: No .ts found in import",
+                    "Error in src\\services\\CommunicatorClient.js at line 3: No .ts found in import"
+                ]
+            }
+        },
+        "src\\services\\CommunicatorHost.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\services\\CommunicatorHost.js at line 1: No .ts found in import",
+                    "Error in src\\services\\CommunicatorHost.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\services\\MqttService.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\services\\MqttService.js at line 1: No .ts found in import",
+                    "Error in src\\services\\MqttService.js at line 3: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Camera.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Camera.js at line 1: No .ts found in import",
+                    "Error in src\\system\\Camera.js at line 2: No .ts found in import",
+                    "Error in src\\system\\Camera.js at line 3: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Databank.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Databank.js at line 1: No .ts found in import",
+                    "Error in src\\system\\Databank.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\DrawSprite.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\DrawSprite.js at line 1: No .ts found in import",
+                    "Error in src\\system\\DrawSprite.js at line 2: No .ts found in import",
+                    "Error in src\\system\\DrawSprite.js at line 3: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\GameObject.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\GameObject.js at line 1: No .ts found in import",
+                    "Error in src\\system\\GameObject.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Input.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Input.js at line 1: No .ts found in import",
+                    "Error in src\\system\\Input.js at line 2: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Resource.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Resource.js at line 1: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Sprite.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Sprite.js at line 1: No .ts found in import",
+                    "Error in src\\system\\Sprite.js at line 2: No .ts found in import",
+                    "Error in src\\system\\Sprite.js at line 3: No .ts found in import"
+                ]
+            }
+        },
+        "src\\system\\Vector2.js": {
+            "checked": true,
+            "result": {
+                "failed": true,
+                "errors": [
+                    "Error in src\\system\\Vector2.js at line 1: No .ts found in import",
+                    "Error in src\\system\\Vector2.js at line 2: No .ts found in import"
+                ]
+            }
+        }
+    },
     "ScanLog": {
-        "totalFiles": 39,
-        "passedFiles": 39,
-        "failedFiles": 0,
-        "linesChecked": 3718
+        "totalFiles": 40,
+        "passedFiles": 18,
+        "failedFiles": 22,
+        "linesChecked": 4245
     }
 }

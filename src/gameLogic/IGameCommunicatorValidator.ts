@@ -1,4 +1,4 @@
-import { MqttGameCommunicator } from "./gameCommunicators/MqttGameCommunicator.js";
+import { MqttGameCommunicator } from "./gameCommunicators/MqttGameCommunicator.ts";
 
 
 // this will be the class that either talks to a host via mqtt or talks to your local "server" that handels robot logic

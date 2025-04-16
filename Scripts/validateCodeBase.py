@@ -3,13 +3,14 @@ import os
 import json
 
 ingore_files = ["node_modules", ".git"]
-hasToInclude = [".js"]
+hasToInclude = [".js", ".ts"]
 
 def map_folder_to_json(folder_path):
     data = {}
     for root, dirs, files in os.walk(folder_path):
         for file in files:
             add = True
+            foundRequirement = False
             file_path = os.path.join(root, file)
             # Use relative paths for JSON structure
             relative_path = os.path.relpath(file_path, folder_path)
@@ -17,8 +18,10 @@ def map_folder_to_json(folder_path):
                 if ingoreTest in relative_path:
                     add = False
             for includeTest in hasToInclude:
-                if includeTest not in relative_path:
-                    add = False
+                if includeTest in relative_path:
+                    foundRequirement = True
+            if foundRequirement == False:
+                add = False
             if add == True:
                 data[relative_path] = {
                     "checked": False,
@@ -49,8 +52,8 @@ def scanFile(file_path, jsonItem):
                     continue
             if line.strip().startswith("import") or line.strip() == "" or line.strip().startswith("//"):
                 if line.startswith("import"):
-                    if ("./" in line or ".\\" in line) and not (".js" in line or ".jsx" in line or ".ts" in line or ".tsx" in line):
-                        errors.append(f"Error in {file_path} at line {lineNumber}: No .js found in import")
+                    if ("./" in line or ".\\" in line) and not (".ts" in line or ".tsx" in line):
+                        errors.append(f"Error in {file_path} at line {lineNumber}: No .ts found in import")
             else:
                 doneWithImports = True
         if len(errors) > 0:

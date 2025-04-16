@@ -1,17 +1,27 @@
-import { Vector2 } from "./src/system/Vector2.js";
-import { GameLoop } from "./src/system/GameLoop.js";
-import { Main } from "./src/objects/Main/Main.js";
-import { Menu } from "./src/levels/Menu.js";
-import { events, EventTypes } from "./src/system/Events.js";
-import { Databank } from "./src/system/Databank.js";
-import { PlayerGameLogic } from "./src/gameLogic/PlayerGameLogic.js"
-import { IGameCommunicatorValidator } from "./src/gameLogic/IGameCommunicatorValidator.js"
+import { Vector2 } from "./system/Vector2.js";
+import { GameLoop } from "./system/GameLoop.js";
+import { Main } from "./objects/Main/Main.js";
+import { Menu } from "./levels/Menu.js";
+import { events, EventTypes } from "./system/Events.js";
+import { Databank } from "./system/Databank.js";
+import { PlayerGameLogic } from "./gameLogic/PlayerGameLogic.js"
+import { IGameCommunicatorValidator } from "./gameLogic/IGameCommunicatorValidator.js"
 
-let tempValidator = new IGameCommunicatorValidator();
+let tempValidator: IGameCommunicatorValidator | null = new IGameCommunicatorValidator();
 tempValidator = null;
 
 const canvas = document.querySelector("#game-canvas");
+if (canvas == null) {
+    throw Error("canvas is null");
+}
+if (canvas instanceof HTMLCanvasElement) {
+} else {
+    throw Error("canvas is not canvastype");
+}
 const ctx = canvas.getContext("2d");
+if (ctx == null) {
+    throw Error("ctx is null");
+}
 const databank = new Databank();
 
 let playerGameLogic = new PlayerGameLogic();
@@ -47,7 +57,7 @@ const draw = () => {
         ctx.translate(-canvas.width / 2 + mainScene.camera.position.x, -canvas.height / 2 + mainScene.camera.position.y);
     }
 
-    mainScene.drawObjects(ctx, 0, 0);
+    mainScene.drawObjects(ctx);
     ctx.restore();
     mainScene.drawForeground(ctx);
 };
