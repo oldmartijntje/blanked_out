@@ -1,11 +1,11 @@
-import { Camera } from "../../system/Camera.js";
-import { events, EventTypes } from "../../system/Events.js";
-import { GameObject } from "../../system/GameObject.js";
-import { Input } from "../../system/Input.js";
-import { storyFlags } from "../../system/StoryFlags.js";
-import { Inventory } from "../Inventory/Inventory.js";
-import { SpriteTextString } from "../SpriteTextString/SpriteTextString.js";
-import { TextBox } from "../TextBox/TextBox.js";
+import { Camera } from "../../system/Camera.ts";
+import { events, EventTypes } from "../../system/Events.ts";
+import { GameObject } from "../../system/GameObject.ts";
+import { Input } from "../../system/Input.ts";
+import { storyFlags } from "../../system/StoryFlags.ts";
+import { Inventory } from "../Inventory/Inventory.ts";
+import { SpriteTextString } from "../SpriteTextString/SpriteTextString.ts";
+import { TextBox } from "../TextBox/TextBox.ts";
 
 const TEXT_SPRITE_SHEET = 'TEXT_SPRITE_SHEET';
 const TEXT_TTF_FONT = 'TEXT_TTF_FONT';

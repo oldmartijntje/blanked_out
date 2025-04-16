@@ -1,5 +1,5 @@
-import { config } from "../config.js";
-import { UP, DOWN, LEFT, RIGHT } from "./Input.js";
+import { config } from "../config.ts";
+import { UP, DOWN, LEFT, RIGHT } from "./Input.ts";
 
 export class Vector2 {
     constructor(x = 0, y = 0) {

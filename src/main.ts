@@ -1,11 +1,11 @@
-import { Vector2 } from "./system/Vector2.js";
-import { GameLoop } from "./system/GameLoop.js";
-import { Main } from "./objects/Main/Main.js";
-import { Menu } from "./levels/Menu.js";
-import { events, EventTypes } from "./system/Events.js";
-import { Databank } from "./system/Databank.js";
-import { PlayerGameLogic } from "./gameLogic/PlayerGameLogic.js"
-import { IGameCommunicatorValidator } from "./gameLogic/IGameCommunicatorValidator.js"
+import { Vector2 } from "./system/Vector2.ts";
+import { GameLoop } from "./system/GameLoop.ts";
+import { Main } from "./objects/Main/Main.ts";
+import { Menu } from "./levels/Menu.ts";
+import { events, EventTypes } from "./system/Events.ts";
+import { Databank } from "./system/Databank.ts";
+import { PlayerGameLogic } from "./gameLogic/PlayerGameLogic.ts"
+import { IGameCommunicatorValidator } from "./gameLogic/IGameCommunicatorValidator.ts"
 
 let tempValidator: IGameCommunicatorValidator | null = new IGameCommunicatorValidator();
 tempValidator = null;

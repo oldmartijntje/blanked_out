@@ -1,5 +1,5 @@
-import { config } from '../config.js';
-import { Vector2 } from '../system/Vector2.js';
+import { config } from '../config.ts';
+import { Vector2 } from '../system/Vector2.ts';
 
 /**
  * @function gridCells

@@ -1,6 +1,6 @@
-import { events, EventTypes } from '../system/Events.js';
+import { events, EventTypes } from '../system/Events.ts';
 import mqtt from 'https://esm.sh/mqtt@5.10.3';
-import { config } from '../config.js';
+import { config } from '../config.ts';
 
 export class CommunicationCodes {
     static I_AM_A_LOBBY = 'Stone Age';

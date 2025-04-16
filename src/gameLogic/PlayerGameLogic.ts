@@ -1,5 +1,5 @@
-import { events, EventTypes } from "../system/Events.js";
-import { GameObject } from "../system/GameObject.js"
+import { events, EventTypes } from "../system/Events.ts";
+import { GameObject } from "../system/GameObject.ts"
 
 class PlayerGameLogic extends GameObject {
     gameCommunicator = null;

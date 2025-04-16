@@ -1,4 +1,4 @@
-import { GameObject } from "../../system/GameObject.js";
+import { GameObject } from "../../system/GameObject.ts";
 
 export class Level extends GameObject {
     constructor() {

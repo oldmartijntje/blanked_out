@@ -1,6 +1,6 @@
-import { Vector2 } from "./Vector2.js";
-import { config } from '../config.js';
-import { GameObject } from "./GameObject.js";
+import { Vector2 } from "./Vector2.ts";
+import { config } from '../config.ts';
+import { GameObject } from "./GameObject.ts";
 
 export class Sprite extends GameObject {
     constructor({

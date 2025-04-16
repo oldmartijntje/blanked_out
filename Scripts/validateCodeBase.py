@@ -2,7 +2,7 @@ import datetime
 import os
 import json
 
-ingore_files = ["node_modules", ".git"]
+ingore_files = ["node_modules", ".git", "vite.config", ".json"]
 hasToInclude = [".js", ".ts"]
 
 def map_folder_to_json(folder_path):
@@ -37,6 +37,8 @@ def scanFile(file_path, jsonItem):
         doneWithImports = False
         lineNumber = 0
         activeComment = False
+        if ".ts" not in file_path:
+            errors.append(f"{file_path} is not a Typescript file")
         for line in lines:
             lineNumber+= 1
             linesChecked += 1

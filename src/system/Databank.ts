@@ -1,5 +1,5 @@
-import { events, EventTypes } from "./Events.js";
-import { GameObject } from "./GameObject.js";
+import { events, EventTypes } from "./Events.ts";
+import { GameObject } from "./GameObject.ts";
 
 class Databank extends GameObject {
     data;

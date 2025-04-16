@@ -1,7 +1,7 @@
-import { config } from '../config.js';
-import { CommunicatorClient } from './CommunicatorClient.js';
-import { CommunicatorHost } from './CommunicatorHost.js';
-import { MqttService, CommunicationCodes } from './MqttService.js';
+import { config } from '../config.ts';
+import { CommunicatorClient } from './CommunicatorClient.ts';
+import { CommunicatorHost } from './CommunicatorHost.ts';
+import { MqttService, CommunicationCodes } from './MqttService.ts';
 
 class CommunicationHostClient {
     _host = null;

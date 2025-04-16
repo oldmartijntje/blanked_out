@@ -1,11 +1,11 @@
-import { resources } from "../system/Resource.js";
-import { Sprite } from "../system/Sprite.js";
-import { Vector2 } from "../system/Vector2.js";
-import { Level } from "../objects/Level/Level.js";
-import { gridCells } from "../helpers/grid.js";
-import { config } from "../config.js";
-import { events } from "../system/Events.js";
-import { DrawSprite, DrawFigures } from "../system/DrawSprite.js";
+import { resources } from "../system/Resource.ts";
+import { Sprite } from "../system/Sprite.ts";
+import { Vector2 } from "../system/Vector2.ts";
+import { Level } from "../objects/Level/Level.ts";
+import { gridCells } from "../helpers/grid.ts";
+import { config } from "../config.ts";
+import { events } from "../system/Events.ts";
+import { DrawSprite, DrawFigures } from "../system/DrawSprite.ts";
 
 
 

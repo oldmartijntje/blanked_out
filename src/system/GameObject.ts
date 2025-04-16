@@ -1,5 +1,5 @@
-import { events } from "./Events.js";
-import { Vector2 } from "./Vector2.js";
+import { events } from "./Events.ts";
+import { Vector2 } from "./Vector2.ts";
 
 export class GameObject {
     constructor({ position }) {

@@ -1,9 +1,9 @@
-import { events, EventTypes } from "../../system/Events.js";
-import { GameObject } from "../../system/GameObject.js";
-import { resources } from "../../system/Resource.js";
-import { Sprite } from "../../system/Sprite.js";
-import { Vector2 } from "../../system/Vector2.js";
-import { getCharacterFrame, getCharacterWidth } from "./spriteFontMap.js";
+import { events, EventTypes } from "../../system/Events.ts";
+import { GameObject } from "../../system/GameObject.ts";
+import { resources } from "../../system/Resource.ts";
+import { Sprite } from "../../system/Sprite.ts";
+import { Vector2 } from "../../system/Vector2.ts";
+import { getCharacterFrame, getCharacterWidth } from "./spriteFontMap.ts";
 
 // Settings for the font
 const FONT_CHARACTER_OFFSET = 4; // every letter has 5 pixels of offset to the left in the sprite sheet

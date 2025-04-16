@@ -1,6 +1,6 @@
-import { Vector2 } from "./Vector2.js";
-import { config } from '../config.js';
-import { Sprite } from "./Sprite.js";
+import { Vector2 } from "./Vector2.ts";
+import { config } from '../config.ts';
+import { Sprite } from "./Sprite.ts";
 
 export class DrawFigures {
     static CIRCLE = 'circle';

@@ -1,5 +1,5 @@
-import { config } from '../config.js';
-import { events, EventTypes } from './Events.js';
+import { config } from '../config.ts';
+import { events, EventTypes } from './Events.ts';
 
 export const LEFT = 'LEFT';
 export const RIGHT = 'RIGHT';

@@ -1,7 +1,7 @@
-import { resources } from '../../system/Resource.js';
-import { Vector2 } from '../../system/Vector2.js';
-import { GameObject } from '../../system/GameObject.js';
-import { Sprite } from '../../system/Sprite.js';
+import { resources } from '../../system/Resource.ts';
+import { Vector2 } from '../../system/Vector2.ts';
+import { GameObject } from '../../system/GameObject.ts';
+import { Sprite } from '../../system/Sprite.ts';
 
 export class TextBox extends GameObject {
     constructor() {

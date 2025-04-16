@@ -1,5 +1,5 @@
-import { config } from '../config.js';
-import { MqttService, CommunicationCodes } from './MqttService.js';
+import { config } from '../config.ts';
+import { MqttService, CommunicationCodes } from './MqttService.ts';
 
 class CommunicatorHost extends MqttService {
     openLobbies = {};

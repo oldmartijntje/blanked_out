@@ -1,6 +1,6 @@
-import { events, EventTypes } from '../system/Events.js';
-import { config } from '../config.js';
-import { MqttService, CommunicationCodes } from './MqttService.js';
+import { events, EventTypes } from '../system/Events.ts';
+import { config } from '../config.ts';
+import { MqttService, CommunicationCodes } from './MqttService.ts';
 
 class CommunicatorClient extends MqttService {
     openLobbies = {};

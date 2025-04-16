@@ -1,11 +1,11 @@
-import { resources } from "../system/Resource.js";
-import { Sprite } from "../system/Sprite.js";
-import { Vector2 } from "../system/Vector2.js";
-import { Level } from "../objects/Level/Level.js";
-import { config } from "../config.js";
-import { events, EventTypes } from "../system/Events.js";
-import { CommunicatorClient } from "../services/CommunicatorClient.js";
-import { CommunicatorHost } from "../services/CommunicatorHost.js";
+import { resources } from "../system/Resource.ts";
+import { Sprite } from "../system/Sprite.ts";
+import { Vector2 } from "../system/Vector2.ts";
+import { Level } from "../objects/Level/Level.ts";
+import { config } from "../config.ts";
+import { events, EventTypes } from "../system/Events.ts";
+import { CommunicatorClient } from "../services/CommunicatorClient.ts";
+import { CommunicatorHost } from "../services/CommunicatorHost.ts";
 
 export class Menu extends Level {
     menu;
