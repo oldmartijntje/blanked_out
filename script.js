@@ -4,21 +4,22 @@ import { Main } from "./src/objects/Main/Main.js";
 import { Menu } from "./src/levels/Menu.js";
 import { events, EventTypes } from "./src/system/Events.js";
 import { Databank } from "./src/system/Databank.js";
+import { PlayerGameLogic } from "./src/gameLogic/PlayerGameLogic.js"
+import { IGameCommunicatorValidator } from "./src/gameLogic/IGameCommunicatorValidator.js"
+
+let tempValidator = new IGameCommunicatorValidator();
+tempValidator = null;
 
 const canvas = document.querySelector("#game-canvas");
 const ctx = canvas.getContext("2d");
 const databank = new Databank();
 
-var MqttCommunicator = null;
+let playerGameLogic = new PlayerGameLogic();
 events.on(EventTypes.SETUP_MQTT_CONNECTOR, this, (connector) => {
-    if (MqttCommunicator) {
-        MqttCommunicator.resetMqtt();
-    }
-    MqttCommunicator = connector;
+    playerGameLogic.setupNewMqttCommunicator(connector);
 }
 );
 events.on(EventTypes.CLOSE_MQTT_CONNECTOR, this, () => {
-    MqttCommunicator.resetMqtt();
 }
 );
 
